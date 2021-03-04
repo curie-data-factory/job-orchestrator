@@ -1,0 +1,6 @@
+{
+	"name":"job-orchestrator/job-orchestrator",
+	"require":	{
+		"adldap2/adldap2": ">=10.2.0"
+	}
+}
