@@ -237,8 +237,11 @@ function scribe($workload)
 	# Initializer
 	$papyrus = "";
 
-	# Ajout des variables de secrets pour l'auth Nexus
-	$papyrus .= "secret_all_keys  = Secret('env', None, 'nexus-id')\n\n";
+	# Ajout des variables d'env
+	$papyrus .= "env = Variable.get(\"process_env\")\n"
+	$papyrus .= "namespace = Variable.get(\"namespace\")\n"
+	$papyrus .= "nexus_user = Variable.get(\"nexus_user\")\n"
+	$papyrus .= "nexus_password = Variable.get(\"nexus_password\")\n"
 
 	# Ajout de la task id :
 	$taskid = str_replace("-","", $workload['name']);
@@ -251,15 +254,19 @@ function scribe($workload)
 	# Ajout de l'image du container : 
 	$papyrus .= "image=\"".$workload['containers'][0]['image']."\",\n                             ";
 
-	# Ajout des variables d'environnement secretes :
-	$papyrus .= "secrets=[secret_all_keys],\n                             ";
-
 	# Ajout des variables d'environnement : 
 	$papyrus .= "env_vars={";
 
 	foreach ($workload['containers'][0]['environment'] as $key => $value) {
 		$papyrus .= "'$key':'$value',";
 	}
+
+	# Ajout de la conf statique
+	$papyrus .= "'env':env,";
+	$papyrus .= "'namespace':namespace,";
+	$papyrus .= "'USERNEXUS':nexus_user,";
+	$papyrus .= "'PASSWORDNEXUS':nexus_password,";
+
 	$papyrus = substr($papyrus, 0, -1);
 	$papyrus .= "},\n                             ";
 
