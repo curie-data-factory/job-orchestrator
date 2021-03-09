@@ -238,10 +238,10 @@ function scribe($workload)
 	$papyrus = "";
 
 	# Ajout des variables d'env
-	$papyrus .= "env = Variable.get(\"process_env\")\n"
-	$papyrus .= "namespace = Variable.get(\"namespace\")\n"
-	$papyrus .= "nexus_user = Variable.get(\"nexus_user\")\n"
-	$papyrus .= "nexus_password = Variable.get(\"nexus_password\")\n"
+	$papyrus .= "env = Variable.get(\"process_env\")\n";
+	$papyrus .= "namespace = Variable.get(\"namespace\")\n";
+	$papyrus .= "nexus_user = Variable.get(\"nexus_user\")\n";
+	$papyrus .= "nexus_password = Variable.get(\"nexus_password\")\n";
 
 	# Ajout de la task id :
 	$taskid = str_replace("-","", $workload['name']);
