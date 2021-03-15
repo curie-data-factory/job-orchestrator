@@ -1,8 +1,8 @@
 <?php 
 
-require __DIR__ . '/vendor/autoload.php';
-
 session_start();
+
+require __DIR__ . '/vendor/autoload.php';
 
 if (isset($_SESSION['connected']) && ($_SESSION['connected'] == True)) {
     $_SESSION['page'] = 1;
@@ -128,8 +128,12 @@ if (isset($_SESSION['connected']) && ($_SESSION['connected'] == True)) {
 
                     // on va modifer la structure des données pour pouvoir agréger les affichages
                     $dataReMap = array();
-                    foreach ($data['items'] as $value) {
-                        $dataReMap[$value['name']][$value['version']] = $value;
+                    if($contents !== false){
+                        foreach ($data['items'] as $value) {
+                            $dataReMap[$value['name']][$value['version']] = $value;
+                        }
+                    } else {
+                        echo "No Content Found.";
                     }
 
                     foreach ($dataReMap as $key => $value) {

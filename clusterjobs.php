@@ -169,24 +169,27 @@ if (isset($_SESSION['connected']) && ($_SESSION['connected'] == True)) {
 										return('<a class="btn btn-primary" href="?podLogs='.$workload['name'].'">Logs</a>');
 									}
 
-									foreach (json_decode(getWorkloads(),True)['data'] as $workload) {
-										?>
-										<tr>
-											<td><?php echo(str_replace(["T","Z"]," ",$workload['created'])); ?></td>
-											<td><?php 
-											if(isset($workload['jobStatus']['completionTime'])) {echo(str_replace(["T","Z"]," ",$workload['jobStatus']['completionTime'])); } ?></td>
-											<td><?php echo(printStatus($workload['state'])); ?></td>
-											<td><?php echo(printState($listPods[$workload['name']]['podStatus'])); ?></td>
-											<td><?php echo('<a href="'.$workload['links']['self'].'">'.$workload['name'].'</a>'); ?></td>
-											<td><?php $arr = preg_split("/\//",$workload['containers'][0]['image']); echo(end($arr)); ?></td>
-											<td><?php $arr = @preg_split("/\//",$workload['containers'][0]['environment']['JOBTORUN']); echo(end($arr)); ?></td>
-											<td><?php echo(printType($workload['type'])); ?></td>
-											<td><?php echo(@$workload['cronJobConfig']['schedule']); ?></td>
-											<td><?php echo(@str_replace(["T","Z"]," ",$workload['cronJobStatus']['lastScheduleTime'])); ?></td>
-											<td><?php echo(printPods($workload)); ?></td>
-											<td><?php echo(printActions($workload)); ?></td>
-										</tr>
-										<?php
+									$dataWorkloads = json_decode(getWorkloads(),True)['data'];
+									if($dataWorkloads != NULL) {
+										foreach ($dataWorkloads as $workload) {
+											?>
+											<tr>
+												<td><?php echo(str_replace(["T","Z"]," ",$workload['created'])); ?></td>
+												<td><?php 
+												if(isset($workload['jobStatus']['completionTime'])) {echo(str_replace(["T","Z"]," ",$workload['jobStatus']['completionTime'])); } ?></td>
+												<td><?php echo(printStatus($workload['state'])); ?></td>
+												<td><?php echo(printState($listPods[$workload['name']]['podStatus'])); ?></td>
+												<td><?php echo('<a href="'.$workload['links']['self'].'">'.$workload['name'].'</a>'); ?></td>
+												<td><?php $arr = preg_split("/\//",$workload['containers'][0]['image']); echo(end($arr)); ?></td>
+												<td><?php $arr = @preg_split("/\//",$workload['containers'][0]['environment']['JOBTORUN']); echo(end($arr)); ?></td>
+												<td><?php echo(printType($workload['type'])); ?></td>
+												<td><?php echo(@$workload['cronJobConfig']['schedule']); ?></td>
+												<td><?php echo(@str_replace(["T","Z"]," ",$workload['cronJobStatus']['lastScheduleTime'])); ?></td>
+												<td><?php echo(printPods($workload)); ?></td>
+												<td><?php echo(printActions($workload)); ?></td>
+											</tr>
+											<?php
+										}
 									}
 								?>
 								</tbody>

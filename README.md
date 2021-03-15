@@ -7,11 +7,11 @@
 		* [Application Configuration File](#application-configuration-file)
 		* [LDAP Configuration File](#ldap-configuration-file)
 		* [NFS Configuration File](#nfs-configuration-file)
-	* [Install](#install)
+	* [Run it !](#run-it-)
 		* [Docker Image](#docker-image)
 		* [Helm Chart](#helm-chart)
 		* [From Sources](#from-sources)
-* [Screenshots & User Guide](#screenshots-user-guide)
+* [Screenshots & User Guide](#screenshots--user-guide)
 
 # Goal
 
@@ -62,6 +62,13 @@ As you may have understood, Job orchestrator needs an **ecosystem** of applicati
 ```php
 <?php 
 
+// PROXY
+define('PROXY_CONF',"proxy.domain.net");
+define('NO_PROXY_CONF',".domain.net");
+
+// LDAP
+define('LDAP',TRUE);
+
 // KUBERNETES / RANCHER
 define('KUBERNETES_API_URL','https://<rancher-url>/v3/clusters/c-*****');
 define('KUBERNETES_ACCESS_KEY','token-******');
@@ -70,7 +77,7 @@ define('KUBERNETES_ACCESS_SECRET','*****************************');
 define('KUBERNETES_NAMESPACE','<namespace>');
 
 // NEXUS
-define('NEXUS_URL','https://<nexus-url>/');
+define('NEXUS_URL','http://localhost:8081/');
 define('NEXUS_API_URL','https://<nexus-url>/service/rest/v1/');
 define('NEXUS_DEFAULT_REPOSITORY','<default-repo>');
 define('NEXUS_USER', '<user>');
@@ -80,6 +87,7 @@ define('NEXUS_PASSWORD', '*****************');
 define("GITLAB_API_URL","https://<gitlab-url>/api/v4/");
 define("GITLAB_API_ACCESS_TOKEN","*****************");
 define("GITLAB_GROUP_PROJET","<gitlab-group-project>");
+define("GITLAB_MONITOR_URL","<gitlabmonitor-url>");
 
 // SPARK
 define('SPARK_LIVY_URL', 'http://<spark-url>/ui');
@@ -92,7 +100,7 @@ define('AIRFLOW_URL','http://<airflow-url>/admin/');
 
 Job Orchestrator Uses **LDAP** to **authenticate users**. 
 
-> *You can bypass the auth system by commenting out some line of code in the index.*
+> *You can bypass the auth system by changing the LDAP var to False (default).*
 
  If you want to use LDAP, you have to set a ldap-conf file : 
 
@@ -140,7 +148,7 @@ For some tasks, you may need to create mounting points on runners. In order to r
 }
 ```
 
-## Install
+## Run it !
 
 You can run job orchestrator from 3 different ways : 
 
@@ -150,6 +158,18 @@ To run anywhere :
 
 ```bash
 docker run -p 80:80 -v conf/:/var/www/html/conf/ job-orchestrator:latest
+```
+
+More info for how to use the Docker image, go to [https://github.com/curie-data-factory/job-orchestrator-docker](https://github.com/curie-data-factory/job-orchestrator-docker)
+
+### Docker Compose
+
+You have a docker-compose.yaml file in the repo, just clone it and run :
+
+```bash
+git clone https://github.com/curie-data-factory/job-orchestrator.git
+cd job-orchestrator/
+docker-compose up
 ```
 
 ### Helm Chart
@@ -180,7 +200,14 @@ touch ldapconf/conf.php
 
 4. Resolve composer package dependencies. See [Here](https://getcomposer.org/doc/00-intro.md) for installing and using composer.
 
+```bash
+composer install --no-dev --optimize-autoloader
+```
+
 # Screenshots & User Guide
 
+![login page](img/job-orchestrator_login.png)
+![repo search](img/job-orchestrator_repo_search.png)
+![kube view](img/job-orchestrator_kube_view.png)
 ____
-Credits : Armand Leopold - Janvier 2021
+Data Factory - Institut Curie - 2021

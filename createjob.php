@@ -68,7 +68,7 @@ if (isset($_SESSION['connected'])) {
 		if (@$_POST['switchproxy'] == "on") {
 			$proxyArray  = array('HTTP_PROXY' => PROXY_CONF,
 								'HTTPS_PROXY' => PROXY_CONF,
-								'NO_PROXY' => ".curie.net, .curie.fr");
+								'NO_PROXY' => NO_PROXY_CONF);
 
 			// On ajoute aux variables d'environnement celles pour le montage CIFS
 			$envArray = array_merge($envArray,$proxyArray);

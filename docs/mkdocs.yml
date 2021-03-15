@@ -1,0 +1,31 @@
+site_name: Job Orchestrator Documentation
+plugins:
+  - minify
+  - search
+  - awesome-pages
+markdown_extensions:
+  - admonition
+  - footnotes
+  - attr_list
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.keys
+  - pymdownx.snippets
+  - pymdownx.inlinehilite
+  - pymdownx.highlight
+  - pymdownx.tabbed
+  - pymdownx.arithmatex
+  - pymdownx.tasklist
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+theme:
+  name: material
+  features:
+    - header.hide
+extra_css:
+  - css/style.css

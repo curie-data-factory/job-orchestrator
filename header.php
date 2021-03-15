@@ -6,7 +6,7 @@ require_once 'conf/conf.php';
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Kubernetes Job Orchestrator</title>
+	<title>Job Orchestrator</title>
 	<link rel="icon" type="image/png" href="img/favicon.png" />
 
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
@@ -21,8 +21,7 @@ require_once 'conf/conf.php';
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand">
-		<img src="./img/favicon.png" width="30" height="30" class="d-inline-block align-top">
-		<h3 class="m-0 ml-2 d-inline-block">Kubernetes Job Orchestrator</h3></a>
+		<h3 class="m-0 ml-2 d-inline-block" style="color:#316ce6;">Job <i class="fas fa-cog"></i>rchestrator</h3></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -65,7 +64,7 @@ require_once 'conf/conf.php';
 				</li>
 			</ul>
 			<form class="form-inline my-2 my-lg-0 ml-4">
-				<a class="btn btn btn-outline-danger" href="logout.php">Déconnexion</a>
+				<a class="btn btn btn-outline-danger" href="logout.php">Sign Out</a>
 			</form>
 		</div>
 	</nav>

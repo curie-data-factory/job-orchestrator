@@ -9,7 +9,7 @@
 			<footer>
 				<br/>
 				<p>
-					Crédits : Data Factory / Direction des données / Institut Curie - <?php 
+					Data Factory / Direction des données / Institut Curie - <?php 
 					echo(date('Y'));
 
 			        # ouverture du json
