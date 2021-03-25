@@ -231,7 +231,7 @@ function executeDeployement($jsonData)
 	return $server_output;
 }
 
-# Cette fonction écrit la représentation en tache airflow du job executé par joborchestrator
+# Cette fonction écrit la représentation en DAG airflow du job executé par joborchestrator
 function scribe($workload)
 {
 	# Initializer
@@ -257,18 +257,40 @@ function scribe($workload)
 	# Ajout des variables d'environnement : 
 	$papyrus .= "env_vars={";
 
+	$privileged = FALSE;
+
 	foreach ($workload['containers'][0]['environment'] as $key => $value) {
-		$papyrus .= "'$key':'$value',";
+		switch ($key) {
+			case 'CIFSPASSWORD':
+				$papyrus .= "'CIFSPASSWORD':'cifs_password',";
+				$privileged = TRUE;
+				break;
+			case 'PASSWORDNEXUS':
+				$papyrus .= "'PASSWORDNEXUS':'nexus_password',";
+				$privileged = TRUE;
+				break;
+			case 'USERNEXUS':
+				$papyrus .= "'USERNEXUS':'nexus_user',";
+				$privileged = TRUE;
+				break;
+			
+			default:
+				$papyrus .= "'$key':'$value',";
+				break;
+		}
 	}
 
 	# Ajout de la conf statique
 	$papyrus .= "'env':env,";
 	$papyrus .= "'namespace':namespace,";
-	$papyrus .= "'USERNEXUS':nexus_user,";
-	$papyrus .= "'PASSWORDNEXUS':nexus_password,";
 
 	$papyrus = substr($papyrus, 0, -1);
 	$papyrus .= "},\n                             ";
+
+	# privileged pod if cifs mount
+	if($privileged){
+		$papyrus .= "full_pod_spec=k8s.V1Pod(metadata=k8s.V1ObjectMeta(name=\"".$taskid."\"),spec=k8s.V1PodSpec(containers=[k8s.V1Container(name=\"base\",security_context=k8s.V1SecurityContext(allow_privilege_escalation=True,privileged=True))])),\n                             ";
+	}
 
 	# Finalizer 
 	$papyrus .= "image_pull_secrets=\"registrygitlab-curie\",\n                             is_delete_operator_pod=True,\n                             get_logs=True,\n                             dag=dag)";
