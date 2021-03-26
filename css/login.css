@@ -23,17 +23,6 @@ body {
 	background-image: url("/img/dot-grid.png");
 }
 
-#logo-curie {
-    width: 150px;
-    max-width: 200px;
-    position: fixed;
-    z-index: 1000;
-    bottom: 0;
-    right: 0;
-    display: block;
-    margin: 15px;
-}
-
 #title {
 	font-family: "keepcalm";
     font-size: 3rem;

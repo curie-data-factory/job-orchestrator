@@ -160,25 +160,18 @@ To run anywhere :
 docker run -p 80:80 -v conf/:/var/www/html/conf/ job-orchestrator:latest
 ```
 
-More info for how to use the Docker image, go to [https://github.com/curie-data-factory/job-orchestrator-docker](https://github.com/curie-data-factory/job-orchestrator-docker)
-
-### Docker Compose
-
-You have a docker-compose.yaml file in the repo, just clone it and run :
-
-```bash
-git clone https://github.com/curie-data-factory/job-orchestrator.git
-cd job-orchestrator/
-docker-compose up
-```
-
 ### Helm Chart
 
 To deploy in production environments :
 
 ```bash
-helm install job-orchestrator
+helm repo add curiedfcharts https://curie-data-factory.github.io/helm-charts
+helm repo update
+
+helm upgrade --install --namespace default --values ./my-values.yaml my-release curiedfcharts/job-orchestrator
 ```
+
+More info [Here](https://artifacthub.io/packages/helm/curie-df-helm-charts/job-orchestrator)
 
 ### From sources
 
@@ -197,8 +190,19 @@ touch conf/conf_cifs.json
 touch ldapconf/conf.php
 ```
 3. Set configuration variables [see templates above](#configuration)
+4. Then run the [Docker Compose](https://docs.docker.com/compose/) stack.
 
-4. Resolve composer package dependencies. See [Here](https://getcomposer.org/doc/00-intro.md) for installing and using composer.
+```bash
+docker-compose up -d
+```
+
+5. Exec into the docker image
+
+```bash
+docker exec -it joborchestrator /bin/bash
+```
+
+6. Resolve composer package dependencies. See [Here](https://getcomposer.org/doc/00-intro.md) for installing and using composer.
 
 ```bash
 composer install --no-dev --optimize-autoloader
