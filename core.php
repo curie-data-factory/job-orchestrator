@@ -265,14 +265,6 @@ function scribe($workload)
 				$papyrus .= "'CIFSPASSWORD':'cifs_password',";
 				$privileged = TRUE;
 				break;
-			case 'PASSWORDNEXUS':
-				$papyrus .= "'PASSWORDNEXUS':'nexus_password',";
-				$privileged = TRUE;
-				break;
-			case 'USERNEXUS':
-				$papyrus .= "'USERNEXUS':'nexus_user',";
-				$privileged = TRUE;
-				break;
 			
 			default:
 				$papyrus .= "'$key':'$value',";
@@ -283,7 +275,9 @@ function scribe($workload)
 	# Ajout de la conf statique
 	$papyrus .= "'env':env,";
 	$papyrus .= "'namespace':namespace,";
-
+	$papyrus .= "'USERNEXUS':nexus_user,";
+	$papyrus .= "'PASSWORDNEXUS':nexus_password,";
+	
 	$papyrus = substr($papyrus, 0, -1);
 	$papyrus .= "},\n                             ";
 
