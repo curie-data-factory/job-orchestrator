@@ -12,8 +12,6 @@ on:
   tags:
     - '*'
 
-  workflow_dispatch:
-
 env:
   IMAGE_NAME: "job-orchestrator"
 
