@@ -262,7 +262,7 @@ function scribe($workload)
 	foreach ($workload['containers'][0]['environment'] as $key => $value) {
 		switch ($key) {
 			case 'CIFSPASSWORD':
-				$papyrus .= "'CIFSPASSWORD':'cifs_password',";
+				$papyrus .= "'CIFSPASSWORD':cifs_password,";
 				$privileged = TRUE;
 				break;
 			
@@ -277,7 +277,7 @@ function scribe($workload)
 	$papyrus .= "'namespace':namespace,";
 	$papyrus .= "'USERNEXUS':nexus_user,";
 	$papyrus .= "'PASSWORDNEXUS':nexus_password,";
-	
+
 	$papyrus = substr($papyrus, 0, -1);
 	$papyrus .= "},\n                             ";
 
