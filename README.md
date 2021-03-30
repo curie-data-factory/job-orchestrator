@@ -67,7 +67,7 @@ define('PROXY_CONF',"proxy.domain.net");
 define('NO_PROXY_CONF',".domain.net");
 
 // LDAP
-define('LDAP',TRUE);
+define('LDAP',FALSE);
 
 // KUBERNETES / RANCHER
 define('KUBERNETES_API_URL','https://<rancher-url>/v3/clusters/c-*****');
@@ -78,8 +78,9 @@ define('KUBERNETES_NAMESPACE','<namespace>');
 
 // NEXUS
 define('NEXUS_URL','http://localhost:8081/');
-define('NEXUS_API_URL','https://<nexus-url>/service/rest/v1/');
+define('NEXUS_API_URL','http://localhost:8081/service/rest/v1/');
 define('NEXUS_DEFAULT_REPOSITORY','<default-repo>');
+define('NEXUS_LOGIN',FALSE);
 define('NEXUS_USER', '<user>');
 define('NEXUS_PASSWORD', '*****************');
 
@@ -157,7 +158,7 @@ You can run job orchestrator from 3 different ways :
 To run anywhere : 
 
 ```bash
-docker run -p 80:80 -v conf/:/var/www/html/conf/ job-orchestrator:latest
+docker run -p 80:80 -v conf/:/var/www/html/conf/ ghcr.io/curie-data-factory/job-orchestrator:latest
 ```
 
 ### Helm Chart

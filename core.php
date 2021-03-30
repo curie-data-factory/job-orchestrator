@@ -62,7 +62,9 @@ function getSSLPage($url) {
     $ch = curl_init($url);
 
 	//Set to simple authentification
-	curl_setopt($ch, CURLOPT_USERPWD, NEXUS_USER . ":" . NEXUS_PASSWORD);
+	if (NEXUS_LOGIN) {
+		curl_setopt($ch, CURLOPT_USERPWD, NEXUS_USER . ":" . NEXUS_PASSWORD);
+	}
 
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -264,6 +266,14 @@ function scribe($workload)
 			case 'CIFSPASSWORD':
 				$papyrus .= "'CIFSPASSWORD':cifs_password,";
 				$privileged = TRUE;
+				break;
+			
+			case 'HTTPS_PROXY':
+				$papyrus .= "'HTTPS_PROXY':https_proxy,";
+				break;
+
+			case 'HTTP_PROXY':
+				$papyrus .= "'HTTP_PROXY':http_proxy,";
 				break;
 			
 			default:
