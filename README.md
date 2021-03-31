@@ -214,5 +214,23 @@ composer install --no-dev --optimize-autoloader
 ![login page](img/job-orchestrator_login.png)
 ![repo search](img/job-orchestrator_repo_search.png)
 ![kube view](img/job-orchestrator_kube_view.png)
+
+# Build Doc
+
+The documentation is compiled from **markdown sources** using [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)
+To compile the documentation : 
+
+1. Go to your source directory : 
+
+```bash
+cd job-orchestrator
+```
+
+2. Run the docker build command : 
+
+```bash
+docker run --rm -i -v "$PWD:/docs" squidfunk/mkdocs-material:latest build
+```
+
 ____
 Data Factory - Institut Curie - 2021

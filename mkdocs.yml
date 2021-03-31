@@ -2,7 +2,6 @@ site_name: Job Orchestrator Documentation
 plugins:
   - minify
   - search
-  - awesome-pages
 markdown_extensions:
   - admonition
   - footnotes

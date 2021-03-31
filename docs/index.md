@@ -1,4 +1,6 @@
-![home](../img/logo.png)
+![logo.png](logo.png)
+
+# Guide Utilisateur
 
 ## Qu'est ce que c'est ?
 
@@ -9,7 +11,7 @@ Job Orchestrator est un outil qui permet de centraliser toutes les activités de
 ### Page de Connexion
 
 La page de connexion utilise la connexion LDAP, seul les personnes de l'équipe **data.office** peuvent se connecter sur ce service. 
-![home](job-orchestrator_accueil.png)
+![home](job-orchestrator_login.png)
 ____________________
 
 ### Page de listing des répertoires
@@ -32,13 +34,10 @@ Elle est découpé en plusieurs parties :
 
 !!! note "1. Ressource to Run"
 	The resources to run is the package or compiled runnable file that you want to execute. Basically it's your job. It has a generated job name that you can edit. You can select the exact Nexus resource to run just bellow.
-
 !!! note "2. Runner"
 	The runner is the docker container in which your job will run. Be careful to choose a container that fits your executable requirements.
-
 !!! note "3. Runner Configuration"
 	The runner configuration is all the settings around the container. It lets you set up CRON scheduling, mounting points etc...
-	
 !!! note "4. Deploy"
 	When executing the deployment,a Kubernetes resource will be created and all the configurations will be applied. It will then run the chosen container. In the container, it will mount the CIFS volume if configured and pull the Nexus resource. It will then execute the resource.
 
@@ -55,7 +54,7 @@ Dans le cas pratique d'un développement d'un job ETL Talend:
 
 Et voila !
 
-![home](job-orchestrator_03.png)
+![home](schema-devops.png)
 _____________________
 
 ### Listing jobs
@@ -73,9 +72,10 @@ Afin de vérifier la bonne execution des jobs, nous pouvons aller dans l'interfa
 	*	Pour un **CronJob** on peut voir la fréquence de lancement (Schedule)
 	*	Pour un **CronJob** on peut voir la date de dernière execution du job.
 * Nous pouvons voir les logs du job ou du lancement de job le plus récent pour les cronJob.
+* Nous pouvons avoir une traduction de notre job en tâche Airflow.
 * Nous pouvons supprimer le déploiement.
 
-![home](job-orchestrator_04.png)
+![home](table-view.png)
 ____________________
 
 ### Apache Airflow
@@ -96,8 +96,13 @@ ____________________
 ### Nexus
 
 Finalement il y a également à disposition un lien pour aller sur Nexus pour voir les ressources directement dans les répertoires.
+
+![home](nexus.png)
+
 ____________________
 
 ### Spark
 
 Il y a également il liens vers l'interface Spark pour pouvoir visualiser les jobs qui tournent sur l'environnement Spark.
+
+![home](spark.png)
