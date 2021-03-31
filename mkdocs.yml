@@ -25,6 +25,8 @@ markdown_extensions:
 theme:
   name: material
   features:
-    - header.hide
+    - navigation.instant
+    - navigation.tabs
+    - toc.integrate
 extra_css:
   - css/style.css
