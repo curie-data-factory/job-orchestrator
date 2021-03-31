@@ -243,7 +243,11 @@ Runners are a type of containers that contains langage specific binaries that en
 At the curie institute we use runner docker images for every task running in our cluster.
 The runner can be defined by any base docker image if it carries a **python** env and can execute the `bootstrap-script.py` at start.
 
-The bootstrap script can be found in the `script` folder of this repo.
+The bootstrap script can be found in the `script` folder of this repo. It needs to be executed at the entrypoint of the container like so :
+
+```dockerfile
+CMD ["python","/run.py"]
+```
 
 ____
 Data Factory - Institut Curie - 2021
