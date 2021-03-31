@@ -12,6 +12,8 @@
 		* [Helm Chart](#helm-chart)
 		* [From Sources](#from-sources)
 * [Screenshots & User Guide](#screenshots--user-guide)
+* [Build the doc](#build-doc)
+* [Runners](#Runners)
 
 # Goal
 
@@ -20,6 +22,8 @@ Job Orchestrator main goal is to enables developer to use a DevOPS approach as e
 - **Gitlab API** : gives use the ability to search for certain **Docker  images** into Gitlab Docker registry with the name : `runner` in it. If an image contains that word, it is considered as an image that can run jobs from **Nexus**.
 - **Nexus API** : Nexus stores jobs. We use Nexus API to search on repositories for jobs that we want to **run** with **Gitlab runner images** on **kubernetes**
 - **Rancher API** : After choosing our **Nexus job** and our **Gitlab runner Docker image** we can configure our task. At the end of the form when submitting it, job orchestrator creates a **Kubernetes Job Resource** and deploys it with the **Rancher** API.
+
+See more about [Runners](#Runners)
 
 # Get Started
 
@@ -231,6 +235,15 @@ cd job-orchestrator
 ```bash
 docker run --rm -i -v "$PWD:/docs" squidfunk/mkdocs-material:latest build
 ```
+
+# Runners
+
+Runners are a type of containers that contains langage specific binaries that enables task to be completed on a well-defined and managed software environment, assuring reproducibility and predictability.
+
+At the curie institute we use runner docker images for every task running in our cluster.
+The runner can be defined by any base docker image if it carries a **python** env and can execute the `bootstrap-script.py` at start.
+
+The bootstrap script can be found in the `script` folder of this repo.
 
 ____
 Data Factory - Institut Curie - 2021
