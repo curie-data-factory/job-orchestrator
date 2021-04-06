@@ -201,6 +201,9 @@ touch ldapconf/conf.php
 docker-compose up -d
 ```
 
+* [http://localhost:80](http://localhost:80) Job Orchestrator front
+* [http://localhost:8081](http://localhost:8081) Nexus
+
 5. Exec into the docker image
 
 ```bash
