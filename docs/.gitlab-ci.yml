@@ -1,7 +1,0 @@
-trigger_build:
-  stage: deploy
-  image: curlimages/curl:7.73.0
-  script:
-    - |-
-        curl -X POST -F token=$TOKEN -F ref=dev https://gitlab.curie.fr/api/v4/projects/676/trigger/pipeline
-        curl -X POST -F token=$TOKENPORTALDATA -F ref=dev https://gitlab.curie.fr/api/v4/projects/681/trigger/pipeline
