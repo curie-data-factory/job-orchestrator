@@ -10,7 +10,7 @@ Job Orchestrator est un outil qui permet de centraliser toutes les activités de
 
 ### Page de Connexion
 
-La page de connexion utilise la connexion LDAP, seul les personnes de l'équipe **data.office** peuvent se connecter sur ce service. 
+La page de connexion utilise la connexion LDAP, seul les personnes de la direction des données peuvent se connecter sur ce service. 
 ![home](job-orchestrator_login.png)
 ____________________
 
