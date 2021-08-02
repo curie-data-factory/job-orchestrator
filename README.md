@@ -1,4 +1,4 @@
-![logo](img/logo.png)
+![logo](docs/logo.png)
 
 * [Goal](#goal)
 * [Get Started](#get-started)
@@ -218,9 +218,9 @@ composer install --no-dev --optimize-autoloader
 
 # Screenshots & User Guide
 
-![login page](img/job-orchestrator_login.png)
-![repo search](img/job-orchestrator_repo_search.png)
-![kube view](img/job-orchestrator_kube_view.png)
+![login page](docs/job-orchestrator_login.png)
+![repo search](docs/job-orchestrator_repo_search.png)
+![kube view](docs/job-orchestrator_kube_view.png)
 
 # Build Doc
 
